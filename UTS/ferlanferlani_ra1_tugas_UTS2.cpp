@@ -29,7 +29,8 @@ using namespace std;
 
 int main(){
 
- float b[1000],c[1000], d[1000], e[1000], f[1000], g[1000], h[1000], total, hasil, rata, max, min, n;
+ int b[1000],c[1000], d[1000], max[1000], i, min[1000], n;
+ float rata[1000], total[1000];
  char a[1000][30];
  cout<<"================================================ SELAMAT DATANG DI APLIKASI SEDERHANA INPUT BARANG ===================================================="<<endl;
  cout<<"\t\t\t\t\t\t\t\tUNIVERSITAS PRIMAGRAHA"<<endl;
@@ -69,7 +70,7 @@ int main(){
  cin>>n;
  cout<<endl<<endl;
  
- for (int i=0; i<n; i++){
+ for (i=0; i<n; i++){
   cout<<"Data ke-"<<i+1<<endl;
   cout<<"Jenis Makanan Ringan \t: ";
   scanf(" %[^\n]s",a[i]);
@@ -84,7 +85,45 @@ int main(){
   cout<<"Rabu\t\t\t: ";
   cin>>d[i];
 
+  // mencari nilai total
+  total[i] = b[i] + c[i] + d[i];
+
+  // Mencarai nilai rata rata
+  rata[i] = total[i] / 3;
+
  }
+
+  // RUMUS
+
+  //Mencari nilai Max 
+    max[i] = 0;
+    for( i = 0; i<n; i++) {
+        if(b[i] > c[i] && b[i] > d[i]) {
+            max[i] = b[i];
+
+        } else if(c[i] > b[i] && c[i] > d[i]) {
+            max[i] = c[i];
+            
+        } else if(d[i] > b[i] && d[i] > c[i]) {
+            max[i] = d[i];
+        }
+    }
+
+  // Mecari nilai Min
+    min[i] = 0;
+    for( i = 0; i<n; i++) {
+        if(b[i] < c[i] && b[i] < d[i]) {
+            min[i] = b[i];
+
+        } else if(c[i] < b[i] && c[i] < d[i]) {
+            min[i] = c[i];
+            
+        } else if(d[i] < b[i] && d[i] < c[i]) {
+            min[i] = d[i];
+        }
+    }
+
+  
 
  system("CLS");
  cout<<"=====================================================================================================================\n";
@@ -92,46 +131,17 @@ int main(){
  cout<<"=====================================================================================================================\n";
  cout<<"|  No  |   Nama Makanan Ringan   | Senin | Selasa | Rabu |     Total    |    Max    |    Min     |    Rata Rata     |\n";
  cout<<"=====================================================================================================================\n";
- for(int i=0;i<n;i++){
+ for(i=0;i<n;i++){
+
   cout<<"| "<<setiosflags(ios::left)<<setw(5)<<i+1<<"|";
   cout<<" "<<setiosflags(ios::left)<<setw(24)<<a[i]<<"|";
   cout<<" "<<setiosflags(ios::left)<<setw(6)<<b[i]<<"|";
   cout<<" "<<setiosflags(ios::left)<<setw(6)<<c[i]<<"|";
   cout<<" "<<setiosflags(ios::left)<<setw(6)<<d[i]<<"|";
-
-// mencari nilai total
-    total = b[i]+c[i]+d[i];
-  cout<<" "<<setiosflags(ios::left)<<setw(13)<<total<<"|";
-  
-
-//   mencari nilai max 
-    if(b[i] >= c[i]) {
-        max = b[i];
-    } 
-    if(c[i] >= b[i]) {
-        max = c[i];
-    }
-    if(d[i] >= b[i]) {
-        max = d[i];
-    } 
-
-// mencari nilai min
-    if(b[i] <= c[i]) {
-        min = b[i];
-    } 
-    if(c[i] <= b[i]) {
-        min = c[i];
-    }
-    if(d[i] <= b[i]) {
-        min = d[i];
-    }
-
-// mencari total
-    hasil = total / 3;
-
-    cout<<" "<<setiosflags(ios::left)<<setw(10)<<max<<"|";
-    cout<<" "<<setiosflags(ios::left)<<setw(11)<<min<<"|";
-    cout<<" "<<setiosflags(ios::left)<<setw(17)<<hasil<<"|";
+  cout<<" "<<setiosflags(ios::left)<<setw(13)<<total[i]<<"|";
+  cout<<" "<<setiosflags(ios::left)<<setw(10)<<max[i]<<"|";
+  cout<<" "<<setiosflags(ios::left)<<setw(11)<<min[i]<<"|";
+  cout<<" "<<setiosflags(ios::left)<<setw(17)<<rata[i]<<"|";
 
 
   cout<<"\n=====================================================================================================================\n";
